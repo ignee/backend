@@ -13,10 +13,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Database connection
 const db = mysql.createConnection({
-    host: 'database-1.c1eyg48ioiyk.ap-south-1.rds.amazonaws.com',
+    host: 'database-2.c1eyg48ioiyk.ap-south-1.rds.amazonaws.com',
     user: 'admin',
     password: 'secure123',
-    database: 'myapp',
+    database: 'users',
 });
 
 db.connect((err) => {
