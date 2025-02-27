@@ -1,10 +1,11 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors());
@@ -13,10 +14,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Database connection
 const db = mysql.createConnection({
-    host: 'database-2.c1eyg48ioiyk.ap-south-1.rds.amazonaws.com',
-    user: 'admin',
-    password: 'secure123',
-    database: 'users',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
 });
 
 db.connect((err) => {
@@ -38,7 +39,6 @@ app.get('/users', (req, res) => {
         res.json(results);
     });
 });
-
 
 app.post('/users', (req, res) => {
     const { name, email } = req.body;
